@@ -22,6 +22,10 @@ public class Humain {
 		return boissonPref;
 	}
 	
+	public void setBoissonPref(String boisson) {
+		this.boissonPref = boisson;
+	}
+	
 	public int getCapital() {
 		return capital;
 	}
@@ -38,7 +42,7 @@ public class Humain {
 		setCapital(getCapital()-somme);
 	}
 	
-	private void parler(String texte) {
+	public void parler(String texte) {
 		System.out.println("(" + getNom() + ") - " + texte);
 	}
 	
