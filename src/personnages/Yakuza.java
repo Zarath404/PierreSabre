@@ -9,8 +9,16 @@ public class Yakuza extends Humain {
 		this.clan = clan;
 	}
 	
-	public void gagnerReputation() {
+	private void gagnerReputation() {
 		this.reputaion ++;
+	}
+	
+	private void perdreReputation() {
+		this.reputaion --;
+	}
+	
+	public int getReputation() {
+		return this.reputaion;
 	}
 	
 	public void extorquer(Commerçant victime) {
@@ -20,5 +28,19 @@ public class Yakuza extends Humain {
 		victime.seFaireExtorquer();
 		this.gagnerReputation();
 		this.parler("Mouahaha, j'ai pris " + argentVole + " à ce misérable commerçant.");
+	}
+	
+	public int perdre() {
+		int argentPerdu = getCapital();
+		this.perdreAgrent(argentPerdu);
+		this.perdreReputation();
+		this.parler("Nooon, j'ai perdu mes sous et de la réputation, j'aurais ma revanceh un jour !");
+		return argentPerdu;
+	}
+	
+	public void gagner(int gain) {
+		this.gagnerArgent(gain);
+		this.gagnerReputation();
+		this.parler("Hihihi, j'ai gagné la bagarre !");
 	}
 }
