@@ -17,6 +17,11 @@ public class Humain {
 		this.capital = capital;
 	}
 	
+	@Override
+	public String toString() {
+		return nom;
+	}
+
 	public String getNom() {
 		return nom;
 	}
@@ -38,15 +43,14 @@ public class Humain {
 	}
 	
 	public void memoriser(Humain autreHumain) {
-		if(nbHumMemorises<30) {
-			memoir[nbHumMemorises-1] = autreHumain;
+		if(nbHumMemorises<TAILLE_MEMOIR) {
+			memoir[nbHumMemorises] = autreHumain;
 			nbHumMemorises++;
 		}
 		else {
-			memoir[0]=null;
-			for(int i=1; i<TAILLE_MEMOIR; i++) {
+			for(int i=1; i<TAILLE_MEMOIR-1; i++) {
 				memoir[i-1]=memoir[i];
-				memoir[nbHumMemorises-1] = autreHumain;
+				memoir[0] = autreHumain;
 			}
 		}
 	}
@@ -98,5 +102,19 @@ public class Humain {
 		this.memoriser(autreHumain);
 		autreHumain.memoriser(this);
 		
+	}
+	
+	public void listerConnaissance(){
+		System.out.print("(" + getNom() + ") - " + "Je connais");
+		if(nbHumMemorises==0) {
+			System.out.print(" " + memoir[0]);
+		}
+		else {
+			System.out.print(" " + memoir[0]);
+			for(int i=1; i<nbHumMemorises; i++) {
+				System.out.print(", " + memoir[i] + " ");
+			}
+		}
+		System.out.println();
 	}
 }
