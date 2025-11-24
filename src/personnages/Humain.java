@@ -7,9 +7,9 @@ public class Humain {
 	private static int MAX_INVENTAIRE = 100;
 	private int nbObjInv=0; 
 	private String[] inventaire= new String[MAX_INVENTAIRE];
-	private static int TAILLE_MEMOIR = 30;
-	private int nbHumMemorises = 0;
-	private Humain[] memoir = new Humain[TAILLE_MEMOIR];
+	protected static int TAILLE_MEMOIR = 30;
+	protected int nbHumMemorises = 0;
+	protected Humain[] memoir = new Humain[TAILLE_MEMOIR];
 	
 	public Humain(String nom, String boissonPref, int capital) {
 		this.nom = nom;
@@ -42,7 +42,7 @@ public class Humain {
 		this.capital = nouvCapital;
 	}
 	
-	public void memoriser(Humain autreHumain) {
+	private void memoriser(Humain autreHumain) {
 		if(nbHumMemorises<TAILLE_MEMOIR) {
 			memoir[nbHumMemorises] = autreHumain;
 			nbHumMemorises++;
@@ -55,15 +55,15 @@ public class Humain {
 		}
 	}
 	
-	public void gagnerArgent(int somme) {
+	protected void gagnerArgent(int somme) {
 		setCapital(getCapital()+somme);
 	}
 	
-	public void perdreAgrent(int somme) {
+	protected void perdreAgrent(int somme) {
 		setCapital(getCapital()-somme);
 	}
 	
-	public void parler(String texte) {
+	protected void parler(String texte) {
 		System.out.println("(" + getNom() + ") - " + texte);
 	}
 	
@@ -92,7 +92,7 @@ public class Humain {
 		}
 	}
 	
-	public void repondre(Humain autreHumain) {
+	private void repondre(Humain autreHumain) {
 		autreHumain.direBonjour();
 	}
 	
