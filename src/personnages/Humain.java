@@ -7,6 +7,9 @@ public class Humain {
 	private static int MAX_INVENTAIRE = 100;
 	private int nbObjInv=0; 
 	private String[] inventaire= new String[MAX_INVENTAIRE];
+	private static int TAILLE_MEMOIR = 30;
+	private int nbHumMemorises = 0;
+	private Humain[] memoir = new Humain[TAILLE_MEMOIR];
 	
 	public Humain(String nom, String boissonPref, int capital) {
 		this.nom = nom;
@@ -32,6 +35,20 @@ public class Humain {
 	
 	public void setCapital(int nouvCapital) {
 		this.capital = nouvCapital;
+	}
+	
+	public void memoriser(Humain autreHumain) {
+		if(nbHumMemorises<30) {
+			memoir[nbHumMemorises-1] = autreHumain;
+			nbHumMemorises++;
+		}
+		else {
+			memoir[0]=null;
+			for(int i=1; i<TAILLE_MEMOIR; i++) {
+				memoir[i-1]=memoir[i];
+				memoir[nbHumMemorises-1] = autreHumain;
+			}
+		}
 	}
 	
 	public void gagnerArgent(int somme) {
@@ -69,5 +86,17 @@ public class Humain {
 		else {
 			this.parler("Je n'ai pas la place pour ranger ça");
 		}
+	}
+	
+	public void repondre(Humain autreHumain) {
+		autreHumain.direBonjour();
+	}
+	
+	public void faireConnaissance(Humain autreHumain) {
+		this.direBonjour();
+		repondre(autreHumain);
+		this.memoriser(autreHumain);
+		autreHumain.memoriser(this);
+		
 	}
 }
