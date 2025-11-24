@@ -15,6 +15,11 @@ public class Ronin extends Humain{
 		this.honneur --;
 	}
 	
+	private void gagnerHonneur() {
+		this.honneur ++;
+	}
+	
+	
 	public void donner(Commerçant beneficiaire) {
 		int argentDonne = this.getCapital()/10;
 		this.parler("Tiens " + beneficiaire + ", voici " + argentDonne + " sous.");
@@ -26,6 +31,7 @@ public class Ronin extends Humain{
 		int force = getHonneur()*2;
 		if(force >= adversaire.getReputation()) {
 			int gain = adversaire.perdre();
+			this.gagnerHonneur();
 			this.gagnerArgent(force);
 			this.parler("Je t'ai vaincu, manant ! Tes " + gain + " sous sont à moi.");
 		}
