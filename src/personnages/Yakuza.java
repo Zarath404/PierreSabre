@@ -49,4 +49,9 @@ public class Yakuza extends Humain {
 		this.gagnerReputation();
 		this.parler("Hihihi, j'ai gagné la bagarre !");
 	}
+	
+	@override
+	public void boire(String boisson) {
+		this.parler("- Qu'est-ce que je vais choisir comme boisson ? Tiens je vais prendre du " + boisson);
+	}
 }
